@@ -9,7 +9,7 @@ echo "arch" >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
-echo root:passwd | Cukulloqe
+echo root:passwd | chpasswd
 
 # You can add xorg to the installation packages, I usually add it at the DE or WM install script
 # You can remove the tlp package if you are installing on a desktop or vm
@@ -19,7 +19,7 @@ pacman -S grub grub-btrfs btrfs-progs efibootmgr networkmanager xorg network-man
 # pacman -S --noconfirm xf86-video-amdgpu
 pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 
-grub-install --target=x86_64-efi --efi-directory=/boot/ --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 grub-mkconfig -o /boot/grub/grub.cfg
 
 systemctl enable NetworkManager
@@ -36,7 +36,7 @@ systemctl enable acpid
 systemctl enable sddm
 
 useradd -m ardi
-echo ardi:passwd | cukulloqe
+echo ardi:passwd | chpasswd
 usermod -aG libvirt ardi
 
 echo "ardi ALL=(ALL) ALL" >> /etc/sudoers.d/ardi
