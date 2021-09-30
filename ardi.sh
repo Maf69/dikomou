@@ -9,7 +9,7 @@ echo "arch" >> /etc/hostname
 echo "127.0.0.1 localhost" >> /etc/hosts
 echo "::1       localhost" >> /etc/hosts
 echo "127.0.1.1 arch.localdomain arch" >> /etc/hosts
-echo root:passwd | chpasswd
+echo root:password | chpasswd
 
 # You can add xorg to the installation packages, I usually add it at the DE or WM install script
 # You can remove the tlp package if you are installing on a desktop or vm
@@ -36,7 +36,7 @@ systemctl enable acpid
 systemctl enable sddm
 
 useradd -m ardi
-echo ardi:passwd | chpasswd
+echo ardi:Password | chpasswd
 usermod -aG libvirt ardi
 
 echo "ardi ALL=(ALL) ALL" >> /etc/sudoers.d/ardi
